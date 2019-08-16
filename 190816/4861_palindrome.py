@@ -8,12 +8,6 @@ def palindrome(inputStr):
             return False
     return True
 
-# board = ['abcde', 'adcba', 'abcde', 'abcde', 'bcdea']
-#
-# N, M = 5, 3
-# # 가로탐색
-#
-
 for T in range(int(input())):
     N, M = map(int, input().split())
     board = []

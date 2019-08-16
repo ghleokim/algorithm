@@ -3,10 +3,6 @@ sys.stdin = open('input/input_4865.txt', 'r')
 # str1 = 'XYPV'
 # str2 = 'EOGGXYPVSY'
 
-"""
-방법1: 딕셔너리 이용
-"""
-"""
 for T in range(int(input())):
     str1, str2 = input(), input()
 
@@ -20,15 +16,3 @@ for T in range(int(input())):
                 dict1[ch] = 1
 
     print('#{0} {1}'.format(T+1, max(dict1.values())))
-"""
-
-"""
-방법2: 
-"""
-for T in range(int(input())):
-    str1, str2 = input(), input()
-    
-
-
-
-    print('#{0} {1}'.format(T+1, T))
