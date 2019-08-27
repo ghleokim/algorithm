@@ -1,4 +1,5 @@
-#!usr/bin/bash
+#! usr/bin/bash
+
 today=$(date +"%y%m%d")
 
 if [ ! -d ~/algo/${today} ]; then
