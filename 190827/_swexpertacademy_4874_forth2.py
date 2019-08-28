@@ -10,7 +10,7 @@ for T in range(int(input())):
             top += 1
             stack[top] = int(token)
         elif token in '+-*/':
-            if top == 0:
+            if top <= 0:
                 error = True
                 break
             

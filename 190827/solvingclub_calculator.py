@@ -144,7 +144,6 @@ for T in range(10):
 """
 
 # library
-
 # incoming priority
 icp = {'(': 3,'*': 2,'/': 2,'+': 1,'-': 1}
 # instack priority
