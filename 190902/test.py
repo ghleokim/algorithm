@@ -1,3 +1,3 @@
-Z = [0 for _ in range(10)]
-O = [1 for _ in range(10)]
-print((lambda x,y: Z[:x]+O[x:y+1]+Z[y+1:])(*map(int,input().split())))
+a = [(10,5),(10,2),(4,7),(4,3)]
+
+print(sorted(a))
