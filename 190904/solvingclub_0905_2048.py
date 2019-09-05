@@ -75,15 +75,13 @@ def mg(w,d):
     if d:
         top=N-1
         for i in range(N-2,-1,-1):
-            if w[i]:
-                if w[top]!=w[i]:top=i
-                else:w[top],w[i]=w[top]*2,0;top=i
+            if w[i] and w[top]!=w[i]:top=i
+            elif w[i]:w[top],w[i]=w[top]*2,0;top=i
     else:
         top=0
         for i in range(1,N):
-            if w[i]:
-                if w[top]!=w[i]:top=i
-                else:w[top],w[i]=w[top]*2,0;top=i
+            if w[i] and w[top]!=w[i]:top=i
+            elif w[i]:w[top],w[i]=w[top]*2,0;top=i
     return w
 def mv(w, d):
     z=[0]*N
@@ -97,14 +95,43 @@ def mv(w, d):
             if r:z[i]=r;i+=1
     return z
 for T in range(int(input())):
-    N,D=input().split();N=int(N);dc={'up':0,'down':1,'left':0,'right':1};d=dc[D]
-    D=1 if D in'updown'else 0
-    B=[[*map(int,input().split())]for _ in range(N)]
+    N,D=input().split();N=int(N);dc={'up':0,'down':1,'left':0,'right':1};d=dc[D];D=1 if D in'updown'else 0;B=[[*map(int,input().split())]for _ in range(N)]
     if D:B=[*zip(*B)]
     for i in range(N):B[i]=mv((mg([*B[i]],d)),d)
     if D:B=[*zip(*B)]
-    print('#',end='')
-    print(T+1,*[' '.join(map(str,B[i]))for i in range(N)],sep='\n')
+    print(f'#',end='');print(T+1,*[' '.join(map(str,B[i]))for i in range(N)],sep='\n')
+
+
+#minor change
+def mg(w,d):
+    if d:
+        top=N-1
+        for i in range(N-2,-1,-1):
+            if w[i] and w[top]!=w[i]:top=i
+            elif w[i]:w[top],w[i]=w[top]*2,0;top=i
+    else:
+        top=0
+        for i in range(1,N):
+            if w[i] and w[top]!=w[i]:top=i
+            elif w[i]:w[top],w[i]=w[top]*2,0;top=i
+    return w
+def mv(w, d):
+    z=[0]*N
+    if d:
+        i=N-1
+        for r in w[::-1]:
+            if r:z[i]=r;i-=1
+    else:
+        i=0
+        for r in w:
+            if r:z[i]=r;i+=1
+    return z
+for T in range(int(input())):
+    N,D=input().split();N=int(N);dc={'up':0,'down':1,'left':0,'right':1};d=dc[D];D=1 if D in'updown'else 0;B=[[*map(int,input().split())]for _ in range(N)]
+    if D:B=[*zip(*B)]
+    for i in range(N):B[i]=mv((mg([*B[i]],d)),d)
+    if D:B=[*zip(*B)]
+    print(f'#{T+1}',end='');for i in range(N):print(*B[i])
 
 
 
