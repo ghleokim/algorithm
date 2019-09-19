@@ -1,5 +1,73 @@
 # 2진 암호 코드
 # 
+
+import sys
+sys.stdin = open('input/input.txt')
+
+numArr = [
+    [None, 9   , 0   , None],
+    [1   , 2   , None, None],
+    [None, 4   , None, 6   ],
+    [5   , 7   , 3   , 8   ]
+]
+
+def getDigit(digit):
+    col = 2 * int(digit[1]) + int(digit[2])
+    row = 2 * int(digit[4]) + int(digit[5])
+    return numArr[col][row]
+
+def getNum(num):
+    i, j = len(num)-1, 55
+    digits = []
+    digit = ['0'] * 7
+    while j >= 0:
+        if j == 55 and num[i] == '0':
+            i -= 1
+            continue
+        elif i >= 0:
+            digit[j % 7] = num[i]
+            if j % 7 == 0:
+                digits = [getDigit(digit)] + digits
+                digit = [0] * 7 
+            i -= 1
+            j -= 1
+        else:
+            digits = [getDigit(digit)] + digits
+            break
+    return digits
+
+def checkValid(digits):
+    i, res = 0, 0
+
+    for digit in digits[:-1]:
+        if i % 2:
+            res += digit
+        else:
+            res += digit*3
+        i += 1
+
+    if not (res + digits[-1]) % 10:
+        return True
+    else:
+        return False
+
+for t in range(int(input())):
+    N, M = map(int, input().split())
+
+    comp = 0
+
+    for _ in range(N):
+        tmp = int(input())
+        if tmp != 0 and not comp:
+            comp = tmp
+
+    print(f'#{t} ',end='')
+    digits = getNum(str(comp))
+    if checkValid(digits):
+        print(sum(map(int, digits)))
+    else:
+        print(0)
+
 """
 00000000000000000000000000000000000000000000000000000000000000000000000000000000
 00000000000000000000000000000000000000000000000000000000000000000000000000000000
@@ -41,70 +109,3 @@ row: digit[4:6]
 10 None 4    None 6
 11 5    7    3    8
 """
-
-import sys
-sys.stdin = open('input/input.txt')
-
-numArr = [
-    [None, 9   , 0   , None],
-    [1   , 2   , None, None],
-    [None, 4   , None, 6   ],
-    [5   , 7   , 3   , 8   ]
-]
-
-def getDigit(digit):
-    col = 2 * int(digit[1]) + int(digit[2])
-    row = 2 * int(digit[4]) + int(digit[5])
-    return numArr[col][row]
-
-def getNum(num):
-    # i, j = len(num)-1, 55
-    # digits = []
-    # digit = ['0'] * 7
-    # while j >= 0:
-    #     if j == 55 and num[i] == '0':
-    #         i -= 1
-    #         continue
-    #     elif i >= 0:
-    #         digit[j % 7] = num[i]
-    #         if j % 7 == 0:
-    #             digits = [getDigit(digit)] + digits
-    #             digit = [0] * 7 
-    #         i -= 1
-    #         j -= 1
-    #     else:
-    #         digits = [getDigit(digit)] + digits
-    #         break
-    return digits
-
-def checkValid(digits):
-    i, res = 0, 0
-
-    for digit in digits[:-1]:
-        if i % 2:
-            res += digit
-        else:
-            res += digit*3
-        i += 1
-
-    if not (res + digits[-1]) % 10:
-        return True
-    else:
-        return False
-
-for t in range(int(input())):
-    N, M = map(int, input().split())
-
-    comp = 0
-
-    for _ in range(N):
-        tmp = int(input())
-        if tmp != 0 and not comp:
-            comp = tmp
-
-    print(f'#{t} ',end='')
-    digits = getNum(str(comp))
-    if checkValid(digits):
-        print(sum(map(int, digits)))
-    else:
-        print(0)
