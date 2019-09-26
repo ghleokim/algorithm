@@ -1,14 +1,25 @@
-#BFS
-from pprint import pprint
+for T in range(int(input())):
+    N = int(input())
+    se = []
+    chosen = []
 
-start = [20, 21, 23]
-end = [20, 23, 24]
+    for i in range(N):
+        se.append([*map(int, input().split())])
 
+    se = sorted(se)
 
-i = len(start)-2
-cur = [i+1]
-
-while i > 0:
-    if start[i] == start[cur[::-1][-1]]:
-
-    i -= 1
+    for i in range(N-1,-1,-1):
+        if not chosen:
+            count = 1
+            chosen.append(se[i])
+            head = se[i][0]
+        
+        elif se[i][0] == se[i-1][0]: continue
+        elif head < se[i][1]: continue
+        else:
+            count += 1
+            chosen.append(se[i])
+            head = se[i][0]
+    print('#', end='')
+    print(T+1, count)
+    
