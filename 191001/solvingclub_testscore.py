@@ -31,7 +31,7 @@ for T in range(int(input())):
     print(T+1, count+1)
 
 """
-
+"""
 # 부분집합 - 시간초과
 
 
@@ -43,7 +43,7 @@ def case(N):
             if i & (1 << j):
                 cur += arr[j]
         if not ans & (1 << cur):
-            print(cur)
+            # print(cur)
             ans += 1 << cur
             count += 1
     
@@ -57,7 +57,52 @@ for T in range(int(input())):
     print('#', end='')
     print(T+1,count)
 
-# reduce arr
+# ======================= #
+
+# 통과
+for T in range(int(input())):
+    N = int(input())
+    ans = [0 for _ in range(100*N+1)]
+    ans[0] = 1
+    nums = sorted([*map(int,input().split())])
+    maxnum = 0
+
+    for n in nums[::-1]:
+        print(ans[:10])
+        i = maxnum + n
+        maxnum += n
+        ans[i] = 1
+        while i > n:
+            i -= 1
+            if ans[i]:
+                ans[i+n] = 1
+        
+        ans[n] = 1
+    print('#', end='')
+    print(T+1, sum(ans))
+"""
+
+# = = = = = = = = #
+
+for T in range(int(input())):
+    N = int(input())
+    ans = [0 for _ in range(100*N+1)]
+    ans[0] = 1
+    nums = [*map(int,input().split())]
+    maxnum = sum(nums)
+
+    for n in nums:
+        i = maxnum
+        while i > n:
+            i -= 1
+            if ans[i]:
+                ans[i+n] = 1
+        ans[n] = 1
+    print('#', end='')
+    print(T+1, sum(ans))
+
+
+"""# reduce arr
 N = int(input())
 arr = [*map(int,input().split())]
 maxnum = max(arr)
@@ -101,18 +146,32 @@ for n, c in enumerate(cnt):
     if c: result *= c+1
 
 print(result)
-
 """
+"""
+1
+5
+1 1 1 3 6
+1
 5
 1 1 1 3 6
 
-
+1
 8
 2 2 2 6 6 10 20 70
+1
+8
+2 2 2 6 6 10 20 70
+
 6
 2 2 2 6 10 20 
+1
 3
 5 10 15
+1
+3
+5 10 15
+
+
 5
 1 3 4 5 10
 
