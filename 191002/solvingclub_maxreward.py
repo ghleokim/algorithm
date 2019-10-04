@@ -71,7 +71,7 @@ for T in range(int(input())):
         num[start], num[right] = num[right], num[start]
 
     if max_count > count:
-        if (max_count - count) // 2 and nn:
+        if (max_count - count) // 2 and not nn:
             num[-1], num[-2] = num[-2], num[-1]
 
     for nl in numlist:
