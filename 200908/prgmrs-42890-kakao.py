@@ -9,7 +9,7 @@ def concatenate(string_array):
 def combination(array):
     n = len(array)
     res = []
-    for i in range(1, n**2):
+    for i in range(1, 2**n):
         turn = []
         for j in range(n):
             if i & (1<<j): turn.append(array[j])
@@ -38,7 +38,7 @@ def make_index(row, combination_dict_array, is_possible_array):
 
 def check_possible(is_possible_array):
     for i in range(len(is_possible_array)):
-        for j in range(i,len(is_possible_array)):
+        for j in range(len(is_possible_array)):
             if i == j: continue
             elif all([is_possible_array[i],is_possible_array[j]]):
                 compare_result = compare(i,j)
@@ -71,6 +71,11 @@ def solution(relation):
 # solution([["100","ryan","music","2"],["200","apeach","math","2"],["300","tube","computer","3"],["400","con","computer","4"],["500","muzi","music","3"],["600","apeach","music","2"]])
 
 
-solution([["10000000","ryan","music","2"]])
-print(solution([["10000000"]]))
-print(solution([["a","aa"],["aa","a"],["a","a"]]))
+# solution([["10000000","ryan","music","2"]])
+# print(solution([["10000000"]]))
+# print(solution([["a","aa"],["aa","a"],["a","a"]]))
+
+print(concatenate(["10000000","ryan","music","2"]))
+
+"0000","0123"
+"00000""123"
