@@ -6,3 +6,4 @@ APS_basic
 ref
 .vscode
 ignore
+*.exe
